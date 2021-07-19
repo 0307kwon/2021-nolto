@@ -11,6 +11,8 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const Button = ({ buttonStyle, reverse = false, children, className }: Props) => {
+  console.log('두번째 테스트 커밋');
+
   return (
     <Styled.Root buttonStyle={buttonStyle} reverse={reverse} className={className}>
       {children}
