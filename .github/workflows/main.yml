@@ -17,4 +17,3 @@ jobs:
         uses: peter-evans/rebase@v1
         with:
           base: main
-          commands: rebase
