@@ -13,7 +13,7 @@ Sentry.init({
   enabled: true,
 });
 
-ReactDOM.render(
+ReactDOM.hydrate(
   <React.StrictMode>
     <App />
   </React.StrictMode>,

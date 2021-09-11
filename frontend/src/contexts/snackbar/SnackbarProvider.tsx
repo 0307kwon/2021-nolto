@@ -6,6 +6,7 @@ import SuccessSignIcon from 'assets/successSign.svg';
 import useSnackbarProvider from './useSnackbarProvider';
 import { AddSnackbar } from 'types';
 import Styled from './SnackbarProvider.styles';
+import { useDocument } from 'hooks/@common/useDocument';
 
 interface Props {
   children: React.ReactNode;
@@ -17,9 +18,8 @@ interface SnackbarContext {
 
 export const Context = createContext<SnackbarContext>(null);
 
-const snackbarRoot = document.getElementById('snackbar-root');
-
 const SnackbarProvider = ({ children }: Props) => {
+  const snackbarRoot = useDocument().getElementById('snackbar-root');
   const { snackbars, addSnackbar } = useSnackbarProvider({
     maxSnackbarCount: 3,
     snackbarRemainTime: 2000,

@@ -1,3 +1,4 @@
+import { useDocument } from 'hooks/@common/useDocument';
 import React, { useMemo, useState } from 'react';
 import ReactDOM from 'react-dom';
 
@@ -17,9 +18,8 @@ type OnConfirm = () => unknown;
 
 export const Context = React.createContext<DialogContext>(null);
 
-const dialogRoot = document.getElementById('dialog-root');
-
 const DialogProvider = ({ children }: Props) => {
+  const dialogRoot = useDocument().getElementById('dialog-root');
   const [dialogType, setDialogType] = useState<DialogType>();
   const [message, setMessage] = useState('');
   const [isOpen, setIsOpen] = useState(false);

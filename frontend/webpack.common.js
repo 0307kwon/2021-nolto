@@ -1,16 +1,7 @@
 const path = require('path');
-const HtmlWebPackPlugin = require('html-webpack-plugin');
 const { DefinePlugin } = require('webpack');
-const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
-  entry: './src/index.tsx',
-  output: {
-    path: path.resolve(__dirname, './dist'),
-    filename: '[name].[chunkhash].js',
-    publicPath: '/',
-    clean: true,
-  },
   target: 'browserslist',
   module: {
     rules: [
@@ -45,32 +36,8 @@ module.exports = {
     modules: [path.resolve(__dirname, 'src'), 'node_modules'],
   },
   plugins: [
-    new HtmlWebPackPlugin({
-      template: './public/index.html',
-    }),
-    new CopyPlugin({
-      patterns: [
-        path.resolve(__dirname, 'public', '_redirects'),
-        { from: './public/fonts/*', to: 'fonts/[name][ext]' },
-      ],
-    }),
     new DefinePlugin({
       'process.env.BASE_URL': JSON.stringify(process.env.BASE_URL),
     }),
   ],
-  optimization: {
-    splitChunks: {
-      chunks: 'async',
-      cacheGroups: {
-        vendor: {
-          chunks: 'all',
-          name: 'vendor',
-          test: /[\\/]node_modules[\\/]/,
-        },
-        default: {
-          filename: 'common-[name].js',
-        },
-      },
-    },
-  },
 };

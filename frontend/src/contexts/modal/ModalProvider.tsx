@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import CrossMark from 'assets/crossMark.svg';
 import { PALETTE } from 'constants/palette';
 import Styled from './ModalProvider.styles';
+import { useDocument } from 'hooks/@common/useDocument';
 
 interface Props {
   children: ReactNode;
@@ -15,9 +16,9 @@ interface ModalContext {
 }
 
 export const Context = React.createContext<ModalContext | null>(null);
-const modalRoot = document.getElementById('modal-root');
 
 const ModalProvider = ({ children }: Props) => {
+  const modalRoot = useDocument().getElementById('modal-root');
   const [modal, setModal] = useState<ReactNode | null>(null);
   const [isOpen, setIsOpen] = useState(false);
 

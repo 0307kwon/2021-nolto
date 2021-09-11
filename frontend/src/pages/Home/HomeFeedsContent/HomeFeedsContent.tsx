@@ -20,12 +20,14 @@ const HomeFeedsContent = ({ filter, feedsCountToShow }: Props) => {
     suspense: false,
   });
 
+  console.log('요곤데', recentFeeds);
+
   return (
     <Styled.Root>
       {isLoading
         ? Array.from({ length: 4 }, (_, idx) => <RegularSkeleton key={idx} />)
         : recentFeeds
-            .slice(0, feedsCountToShow)
+            ?.slice(0, feedsCountToShow)
             .map((feed) => <RegularFeedCard key={feed.id} feed={feed} />)}
     </Styled.Root>
   );
